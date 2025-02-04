@@ -1,0 +1,19 @@
+@define-color slate oklch(0.279 0.041 260.031);
+@define-color slate-light oklch(0.869 0.022 252.894);
+@define-color slate-dark oklch(0.208 0.042 265.755);
+
+window {
+  background: @slate;
+  color: @slate-light;
+}
+
+.btn {
+  border: none;
+  background: linear-gradient(alpha(@slate-dark, 0.5), @slate-dark),
+    url("resource:///org/gtk/coffee-ui/assets/coffee.jpg");
+  background-size: cover;
+  background-position: center;
+
+  color: @slate-light;
+  border-radius: 1000px;
+}

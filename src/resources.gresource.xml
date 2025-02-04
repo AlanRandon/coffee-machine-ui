@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/org/gtk/coffee-ui">
+		<file compressed="true">builder.ui</file>
+		<file compressed="true">assets/coffee.jpg</file>
+		<file compressed="true">style.css</file>
+	</gresource>
+</gresources>
