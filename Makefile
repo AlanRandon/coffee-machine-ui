@@ -2,4 +2,4 @@
 
 build-rpi-iso:
 	git add .
-	nix build ./rpi-nix#images.rpi2
+	nix build -L ./rpi-nix#nixosConfigurations.zero2w.config.system.build.sdImage
