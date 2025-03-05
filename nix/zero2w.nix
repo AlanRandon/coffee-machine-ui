@@ -1,8 +1,6 @@
-{
-  lib,
-  modulesPath,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }: {
   imports = [
     ./sd-image.nix
@@ -19,7 +17,7 @@
   nixpkgs.hostPlatform = "aarch64-linux";
   nixpkgs.buildPlatform = "x86_64-linux";
   # ! Need a trusted user for deploy-rs.
-  nix.settings.trusted-users = ["@wheel"];
+  nix.settings.trusted-users = [ "@wheel" ];
   system.stateVersion = "24.05";
 
   zramSwap = {
@@ -48,7 +46,7 @@
 
   hardware = {
     enableRedistributableFirmware = lib.mkForce false;
-    firmware = [pkgs.raspberrypiWirelessFirmware]; # Keep this to make sure wifi works
+    firmware = [ pkgs.raspberrypiWirelessFirmware ]; # Keep this to make sure wifi works
     i2c.enable = true;
     deviceTree.filter = "bcm2837-rpi-zero*.dtb";
     deviceTree.overlays = [
@@ -74,7 +72,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_rpi02w;
 
-    initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage"];
+    initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -89,7 +87,7 @@
     interfaces."wlan0".useDHCP = true;
     wireless = {
       enable = true;
-      interfaces = ["wlan0"];
+      interfaces = [ "wlan0" ];
       # ! Change the following to connect to your own network
       networks = {
         "<ssid>" = {
@@ -104,21 +102,4 @@
 
   # NTP time sync.
   services.timesyncd.enable = true;
-
-  # ! Change the following configuration
-  users.users.bob = {
-    isNormalUser = true;
-    home = "/home/bob";
-    description = "Bob";
-    extraGroups = ["wheel" "networkmanager"];
-    # ! Be sure to put your own public key here
-    openssh.authorizedKeys.keys = ["a public key"];
-  };
-
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = false;
-  };
-  # ! Be sure to change the autologinUser.
-  services.getty.autologinUser = "bob";
 }
