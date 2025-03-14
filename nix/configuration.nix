@@ -8,6 +8,9 @@
     custom.zig
     gtk4
     pkg-config
+
+    # Other system packages (wm, e.t.c.)
+    cage
   ];
 
   # ! Change the following configuration
@@ -17,7 +20,7 @@
     description = "Coffee Machine UI";
     extraGroups = [ "wheel" "networkmanager" ];
     # ! Be sure to put your own public key here
-    # openssh.authorizedKeys.keys = [ "a public key" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+YdA6ujWIbIGUWGQgWrlBhvBTyMd0qnFkIHrbgw111 alan@nixos" ];
   };
 
   security.sudo = {
